@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mongo:
+    container_name: mongodb
+    image: mongo:4.2
+    ports:
+      - 27017:27017
+    volumes:
+      - ./volumes/mongodb:/data/bd-mongo
+    restart: unless-stopped
+    networks:
+      - backend
+  
+  api:
+    container_name: API
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
