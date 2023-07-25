@@ -52,3 +52,13 @@ def route_delete(movie_id):
         return controller.delete_movie(movie_id)
     
     return METHOD_NOT_DEFINED
+
+rate_one = Blueprint('rate_one', __name__)
+
+@rate_one.route("/movie/<movie_id>", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def route_read_one(movie_id):
+    if request.method == "POST":
+        return controller.rate_movie(movie_id, request)
+    
+    return METHOD_NOT_DEFINED

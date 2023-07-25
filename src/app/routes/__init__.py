@@ -9,3 +9,5 @@ def define_routes(app):
     app.register_blueprint(read_all, url_prefix='/movies/')
     app.register_blueprint(update)
     app.register_blueprint(delete)
+    app.register_blueprint(rate_one)
+

@@ -1,6 +1,6 @@
 from flask_api import status as flask_status
 from app.util import make_response, make_error
-from app.services.movie import create, get_by_id, get_all, update, remove_movie
+from app.services.movie import create, get_by_id, get_all, update, delete, rating
 import pymongo
 import sys
 
@@ -53,7 +53,17 @@ def update_movie(movie_id, request):
 
 def delete_movie(movie_id):
     try:
-        movie = remove_movie(movie_id)
+        movie = delete(movie_id)
         return make_response(movie, flask_status.HTTP_204_NO_CONTENT)
     except Exception as e:
         return make_error(f'Something wrong happened: {str(e)}', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+def rate_movie(movie_id, request):
+    #try:
+        body = request.get_json()
+        if "rate" not in body or body["rate"] > 10 or body["rate"] < 0:
+            return make_error(f'Something wrong happened: No valid attributes to rate', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
+        movie = rating(movie_id, body["rate"])
+        return make_response(movie, flask_status.HTTP_202_ACCEPTED)
+    #except Exception as e:
+    #   return make_error(f'Something wrong happened: {str(e)}', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
