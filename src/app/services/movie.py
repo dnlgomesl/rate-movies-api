@@ -10,13 +10,14 @@ def generate_id(name, timestamp):
     return hashlib.sha1(serialized.encode('utf-8')).hexdigest()
 
 
-def create(name, director, genre):
+def create(name, director, genre, year):
     id = generate_id(name, str(datetime.now()))
     movie = {
         "_id" : id,
         "name": name,
         "director": director,
         "genre": genre,
+        "year": year,
         "rating": 0,
         "count": 0
     }

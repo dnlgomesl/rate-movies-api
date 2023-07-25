@@ -2,18 +2,18 @@ from flask_api import status as flask_status
 from app.util import make_response, make_error
 from app.services.movie import create, get_by_id, get_all, update, delete, rating, get_one_note_rate_move
 import pymongo
-import sys
 
 
 def post_movie(request):
     try:
         body = request.get_json()
-        if "name" not in body or "director" not in body or "genre" not in body:
+        if "name" not in body or "director" not in body or "genre" not in body or "year" not in body:
             return make_error(f'Something wrong happened: No valid attributes to create', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         name = body["name"]
         director = body["director"]
         genre = body["genre"]
-        movie_created = create(name, director, genre)
+        year = body["year"]
+        movie_created = create(name, director, genre, year)
         return make_response(movie_created, flask_status.HTTP_201_CREATED)
     except pymongo.errors.DuplicateKeyError:
         return make_error(f'Something wrong happened: Duplicated Movie', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -37,7 +37,7 @@ def get_movies():
 def update_movie(movie_id, request):
     try:
         body = request.get_json()
-        if "name" not in body and "director" not in body and "genre" not in body:
+        if "name" not in body and "director" not in body and "genre" not in body and "year" not in body:
             return make_error(f'Something wrong happened: No valid attributes to update', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         att = {}
         if "name" in body:
@@ -46,6 +46,8 @@ def update_movie(movie_id, request):
             att["director"] = body["director"]
         if "genre" in body:
             att["genre"] = body["genre"]
+        if "year" in body:
+            att["year"] = body["year"]
         movie = update(movie_id, att)
         return make_response(movie, flask_status.HTTP_202_ACCEPTED)
     except Exception as e:
