@@ -47,6 +47,9 @@ def delete(id):
 
 def rating(id, rate):
     movie = get_by_id(id)
-    count = movie["count"] + 1
-    rating_value = (movie["rating"] + rate) / count
-    return update(id, {"rating": rating_value, "count": count})
+    if "count" in movie and "rating" in movie:
+        count = movie["count"] + 1
+        rating_value = ((movie["rating"]*(count-1)) + rate) / count
+        return update(id, {"rating": rating_value, "count": count})
+    else:
+        return {}
