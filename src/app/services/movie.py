@@ -3,17 +3,13 @@ import json
 
 from connect2db import DB
 
-def generete_id(name, director):
-    id_fields = {"name": name, "director": director}
-    serialized = json.dumps(id_fields, separators=(',', ':'), sort_keys=True, ensure_ascii=False)
-    return hashlib.sha1(serialized.encode('utf-8')).hexdigest()
-
-def create(name, director):
-    id = generete_id(name, director)
+def create(name, director, genre):
+    id = str(DB.movie.estimated_document_count())
     movie = {
         "_id" : id,
         "name": name,
-        "director": name,
+        "director": director,
+        "genre": genre,
         "rating": 0,
         "count_rating": 0
     }
@@ -26,11 +22,8 @@ def create(name, director):
 def get_by_id(id):
     query = {"_id": id}
     movie = DB.movie.find_one(query)
-    return movie
-
-def get_by_name(name):
-    query = {"name": name}
-    movie = DB.movie.find_one(query)
+    if not movie:
+        return {}
     return movie
 
 def get_all():
@@ -39,8 +32,9 @@ def get_all():
 
 def update(movie_id, att):
     DB.movie.update_one({"_id": movie_id}, {"$set": att})
+    return get_by_id(movie_id)
 
 def remove_movie(id):
     query = {"_id": id}
-    deleted_movie = DB.movie.delete_one(query)
-    return deleted_movie.deleted_count
+    DB.movie.delete_one(query)
+    return get_by_id(id)
