@@ -9,9 +9,9 @@ def post_movie(request):
         body = request.get_json()
         if "name" not in body or "director" not in body or "genre" not in body or "year" not in body or type(body["year"]) != int:
             return make_error(f'Something wrong happened: No valid attributes to create', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
-        name = body["name"]
-        director = body["director"]
-        genre = body["genre"]
+        name = str(body["name"])
+        director = str(body["director"])
+        genre = str(body["genre"])
         year = body["year"]
         movie_created = create(name, director, genre, year)
         return make_response(movie_created, flask_status.HTTP_201_CREATED)
@@ -41,11 +41,11 @@ def update_movie(movie_id, request):
             return make_error(f'Something wrong happened: No valid attributes to update', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         att = {}
         if "name" in body:
-            att["name"] = body["name"]
+            att["name"] = str(body["name"])
         if "director" in body:
-            att["director"] = body["director"]
+            att["director"] = str(body["director"])
         if "genre" in body:
-            att["genre"] = body["genre"]
+            att["genre"] = str(body["genre"])
         if "year" in body:
             att["year"] = body["year"]
         movie = update(movie_id, att)
