@@ -48,10 +48,10 @@ Esse endpoint cria um filme.
 Exemplo de body:
 ```json
 {
-	"name": "inception",
-	"director": "nolan",
-	"genre": "action",
-	"year":  2010
+"name": "inception",
+"director": "nolan",
+"genre": "action",
+"year":  2010
 }
 ```
 Todos os itens são obrigatórios, é retornado erro se faltar algum.
