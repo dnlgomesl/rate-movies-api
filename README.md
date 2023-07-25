@@ -70,7 +70,7 @@ Exemplo de resposta de sucesso:
 ```
 
 ### Read All
-Endpoint: GET /movieS/
+Endpoint: GET /movies/
 
 Retorna todos os filmes cadastrados.
 
@@ -119,7 +119,7 @@ Exemplo de resposta de sucesso:
 ### Update
 Endpoint: PUT /movie/<movie_id>
 
-Caso o id exista atualiza o filme.
+Caso o id exista, atualiza o filme.
 
 Exemplo de body:
 ```json
@@ -148,12 +148,12 @@ Exemplo de resposta de sucesso:
 ### Delete
 Endpoint: DELETE /movie/<movie_id>
 
-Caso o id exista, deleta o filme
+Caso o id exista, deleta o filme.
 
 ### Rating
 Endpoint: POST /movie/<movie_id>
 
-Caso o id exista avalia o filme.
+Caso o id exista, avalia o filme.
 
 Exemplo de body:
 ```json
