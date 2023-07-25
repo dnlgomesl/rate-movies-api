@@ -7,7 +7,7 @@ import pymongo
 def post_movie(request):
     try:
         body = request.get_json()
-        if "name" not in body or "director" not in body or "genre" not in body or "year" not in body:
+        if "name" not in body or "director" not in body or "genre" not in body or "year" not in body or type(body["year"]) != int:
             return make_error(f'Something wrong happened: No valid attributes to create', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         name = body["name"]
         director = body["director"]
@@ -37,7 +37,7 @@ def get_movies():
 def update_movie(movie_id, request):
     try:
         body = request.get_json()
-        if "name" not in body and "director" not in body and "genre" not in body and "year" not in body:
+        if "name" not in body and "director" not in body and "genre" not in body and "year" not in body and type(body["year"]) != int:
             return make_error(f'Something wrong happened: No valid attributes to update', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         att = {}
         if "name" in body:
@@ -63,7 +63,7 @@ def delete_movie(movie_id):
 def rate_movie(movie_id, request):
     try:
         body = request.get_json()
-        if "rate" not in body or body["rate"] > 10 or body["rate"] < 0:
+        if "rate" not in body or not (type(body["rate"]) == int or type(body["rate"]) == float) or body["rate"] > 10 or body["rate"] < 0:
             return make_error(f'Something wrong happened: No valid attributes to rate', flask_status.HTTP_500_INTERNAL_SERVER_ERROR)
         movie = rating(movie_id, body["rate"])
         return make_response(movie, flask_status.HTTP_202_ACCEPTED)
