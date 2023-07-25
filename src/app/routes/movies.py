@@ -62,3 +62,13 @@ def route_read_one(movie_id):
         return controller.rate_movie(movie_id, request)
     
     return METHOD_NOT_DEFINED
+
+not_rate = Blueprint('not_rate', __name__)
+
+@not_rate.route("", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def route_not_rate():
+    if request.method == "GET":
+        return controller.not_rate_movie()
+    
+    return METHOD_NOT_DEFINED

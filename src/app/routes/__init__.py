@@ -10,4 +10,4 @@ def define_routes(app):
     app.register_blueprint(update)
     app.register_blueprint(delete)
     app.register_blueprint(rate_one)
-
+    app.register_blueprint(not_rate, url_prefix='/movie/rating/none/')

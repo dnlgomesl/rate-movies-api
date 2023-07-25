@@ -2,6 +2,7 @@ from connect2db import DB
 from datetime import datetime
 import hashlib
 import json
+import random
 
 def generate_id(name, timestamp):
     id_fields = {"name": name, "timestamp":timestamp}
@@ -53,3 +54,11 @@ def rating(id, rate):
         return update(id, {"rating": rating_value, "count": count})
     else:
         return {}
+
+def get_one_note_rate_move():
+    query = {"count": 0}
+    movie = list(DB.movie.find(query))
+    if len(movie) > 0:
+        i = random.randint(0, len(movie)-1)
+        return movie[i]
+    return movie
