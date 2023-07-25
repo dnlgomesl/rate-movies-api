@@ -33,11 +33,11 @@ Exemplo de resposta:
 
 ```json
 {
-  "status": "online",
-  "timestamp": 1690268056,
-  "started": 1690268052,
-  "service": "api",
-  "version": "1.0"
+"status": "online",
+"timestamp": 1690268056,
+"started": 1690268052,
+"service": "api",
+"version": "1.0"
 }
 ```
 ### Create
@@ -59,13 +59,13 @@ Todos os itens são obrigatórios, é retornado erro se faltar algum.
 Exemplo de resposta de sucesso:
 ```json
 {
-    "_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
-    "name": "inception",
-    "director": "nolan",
-    "genre": "action",
-    "year": 2010,
-    "rating": 0,
-    "count": 0
+"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
+"name": "inception",
+"director": "nolan",
+"genre": "action",
+"year": 2010,
+"rating": 0,
+"count": 0
 }
 ```
 
@@ -106,13 +106,13 @@ Caso o id exista, retorna o filme.
 Exemplo de resposta de sucesso:
 ```json
 {
-    "_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
-    "name": "inception",
-    "director": "nolan",
-    "genre": "action",
-    "year": 2010,
-    "rating": 0,
-    "count": 0
+"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
+"name": "inception",
+"director": "nolan",
+"genre": "action",
+"year": 2010,
+"rating": 0,
+"count": 0
 }
 ```
 
@@ -124,10 +124,10 @@ Caso o id exista, atualiza o filme.
 Exemplo de body:
 ```json
 {
-    "name": "inception_edited",
-    "director": "nolan_edited",
-    "genre": "action_edited",
-    "year": 2011
+"name": "inception_edited",
+"director": "nolan_edited",
+"genre": "action_edited",
+"year": 2011
 }
 ```
 É necessário ter algum dos atributos (name, director, genre, year) no body, se não não é atualizado.
@@ -135,13 +135,13 @@ Exemplo de body:
 Exemplo de resposta de sucesso:
 ```json
 {
-	"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
-	"name": "inception_edited",
-	"director": "nolan_edited",
-	"genre": "action_edited",
-	"year": 2011,
-    "rating": 0,
-    "count": 0
+"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
+"name": "inception_edited",
+"director": "nolan_edited",
+"genre": "action_edited",
+"year": 2011,
+"rating": 0,
+"count": 0
 }
 ```
 
@@ -158,7 +158,7 @@ Caso o id exista, avalia o filme.
 Exemplo de body:
 ```json
 {
-	"rate": 9.3
+"rate": 9.3
 }
 ```
 É necessário ter que `rate` seja enviado no body.
@@ -166,13 +166,13 @@ Exemplo de body:
 Exemplo de resposta de sucesso:
 ```json
 {
-	"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
-	"name": "inception_edited",
-	"director": "nolan_edited",
-	"genre": "action_edited",
-	"year": 2011,
-	"rating": 9.3,
-	"count": 1
+"_id": "4a6b505a15ce4d9e34e5fdd4655e86472ce11895",
+"name": "inception_edited",
+"director": "nolan_edited",
+"genre": "action_edited",
+"year": 2011,
+"rating": 9.3,
+"count": 1
 }
 ```
 ### Not Rating
@@ -183,12 +183,12 @@ Retorna um filme sem avaliação caso exista. Caso exista mais de um, é retorna
 Exemplo de resposta de sucesso:
 ```json
 {
-	"_id": "df48181c4ef7be134c81316f83a81f930cd714b6",
-	"name": "memento",
-	"director": "nolan",
-	"genre": "action",
-	"year": 2000,
-	"rating": 0,
-	"count": 0
+"_id": "df48181c4ef7be134c81316f83a81f930cd714b6",
+"name": "memento",
+"director": "nolan",
+"genre": "action",
+"year": 2000,
+"rating": 0,
+"count": 0
 }
 ```
